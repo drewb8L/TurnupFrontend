@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TurnupFrontendDotNet6.LoginPage"
+             xmlns:viewmodel="clr-namespace:TurnupFrontendDotNet6.ViewModels"
+             x:DataType="viewmodel:LoginViewModel"
+             Title="Login">
+
+    <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+
+            <Image Source="turnup_logo.png"
+                   WidthRequest="200"
+                   HeightRequest="200" />
+
+            <Border
+                Background="#E7E7E7"
+                Padding="5,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10,10,10,10" />
+                </Border.StrokeShape>
+                <Entry
+                    x:Name="Email"
+                    Text="{Binding Email}"
+                    Placeholder="Email"
+                    Keyboard="Email" />
+            </Border>
+
+            <Border
+                Background="#E7E7E7"
+                Padding="5,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10,10,10,10" />
+                </Border.StrokeShape>
+
+                <Entry
+                    x:Name="Password"
+                    Text="{Binding Password}"
+                    Placeholder="Password"
+                    IsPassword="true" />
+            </Border>
+            <Button
+                BackgroundColor="#179BA3"
+                Text="Login"
+                WidthRequest="65"
+                Command="{Binding LoginCommand}" />
+
+        </VerticalStackLayout>
+
+</ContentPage>
