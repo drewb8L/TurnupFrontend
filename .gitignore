@@ -22,6 +22,7 @@ mono_crash.*
 TurnupFrontendDotNet6/obj/
 TurnupFrontendDotNet6/.idea/
 TurnupFrontendDotNet6/bin/
+.idea
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
