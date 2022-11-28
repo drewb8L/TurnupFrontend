@@ -31,6 +31,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<LogoutPage>();
 		builder.Services.AddSingleton<RegistrationPage>();
 		builder.Services.AddSingleton<ScanPage>();
+		builder.Services.AddTransient<CartPage>();
 		
 		
 		
@@ -48,6 +49,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<LogoutViewModel>();
 		builder.Services.AddSingleton<RegistrationViewModel>();
 		builder.Services.AddSingleton<ScanPageViewModel>();
+		builder.Services.AddScoped<CartViewModel>();
 		
 		
 		

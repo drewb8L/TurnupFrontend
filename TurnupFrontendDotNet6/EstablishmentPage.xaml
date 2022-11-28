@@ -57,7 +57,7 @@
                     </CollectionView>
 
                 </RefreshView>           
-    </Grid>
+            </Grid>
         
     </VerticalStackLayout>
     </ScrollView>

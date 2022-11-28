@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
-using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using TurnupFrontendDotNet6.Models;
+using JsonArray = System.Text.Json.Nodes.JsonArray;
 
 namespace TurnupFrontendDotNet6.Services;
 
@@ -84,11 +84,31 @@ public class TurnupApiService
         }
         
     }
-    
-
     public async Task SetAuthToken()
     {
-        var token = await SecureStorage.GetAsync("token");
+        var token = await SecureStorage.GetAsync("token").ConfigureAwait(false);
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+    }
+
+    public async Task<Cart> GetCart()
+    {
+        await SetAuthToken().ConfigureAwait(false);
+        try
+        {
+            var establishmentId = await SecureStorage.GetAsync("EstablishmentId");
+            var response = await _httpClient.GetStringAsync("/api/cart?establishmentId=" + establishmentId)
+                .ConfigureAwait(false);
+            var cart = JsonArray.Parse(response);
+            return JsonConvert.DeserializeObject<Cart>(cart.ToString());
+        }
+        catch (Exception)
+        {
+            
+            StatusMessage = "Failed to successfully retrieve cart";
+            return default;
+        }
+        
+        
+        
     }
 }
