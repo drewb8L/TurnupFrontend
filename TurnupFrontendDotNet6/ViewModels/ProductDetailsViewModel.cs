@@ -1,17 +1,18 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TurnupFrontendDotNet6.Models;
+
+
 namespace TurnupFrontendDotNet6.ViewModels
 {
-    [QueryProperty(nameof(Product), nameof(_product))]
+    [QueryProperty(nameof(Product), "Product")]
     public partial class ProductDetailsViewModel : BaseViewModel
     {
 	    [ObservableProperty] 
-        private Product _product;
-
-        
-
+        Product product;
 
     }
+    
+    
 }
 

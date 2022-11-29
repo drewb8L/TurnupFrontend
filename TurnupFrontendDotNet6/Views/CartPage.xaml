@@ -11,33 +11,37 @@
         <Button
             Text="Get cart"
             WidthRequest="65"
-            Command="{Binding GetCartCommand}"
-            />
-        <Label
-            Text="Your Cart"/>
-        <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
-            
-
-                <CollectionView Grid.ColumnSpan="3" ItemsSource="{Binding Items}" SelectionMode="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:CartItems">
-                            <Grid Padding="10">
-                                <Frame HeightRequest="90" HorizontalOptions="Start" WidthRequest="375">
-                                        
-                                    
-                                    <HorizontalStackLayout Padding="10" Spacing="5">
-                                        <Label Text="{Binding Name}"></Label>
-                                        <Label Text="{Binding Price}"></Label>
-                                        <Image Source="{Binding ImgUrl}" Margin="150,0,0,0"  Aspect="AspectFit" />                                         
-                                    </HorizontalStackLayout>
-                                </Frame>
-                                   
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-        </Grid>
-        <Label Text="{Binding Subtotal}" Margin="20" Padding="5"/>
+            Command="{Binding GetCartCommand}"/>
+        
+        <CollectionView ItemsSource="{Binding  Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:CartItems">
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding ImgUrl}" HeightRequest="100" WidthRequest="100" />  
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               FontAttributes="Bold" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Price}"
+                               FontAttributes="Italic"
+                               VerticalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>                 
+        <Line Stroke="Black" X2="800"/>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="{Binding Subtotal}"/>
+        </HorizontalStackLayout>
     </StackLayout>
 
 </ContentPage>

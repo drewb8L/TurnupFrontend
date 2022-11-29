@@ -32,14 +32,10 @@ public static class MauiProgram
 		builder.Services.AddSingleton<RegistrationPage>();
 		builder.Services.AddSingleton<ScanPage>();
 		builder.Services.AddTransient<CartPage>();
-		
-		
-		
-		
+
 		// Services
 		builder.Services.AddSingleton<TurnupApiService>();
-		builder.Services.AddSingleton<ProductService>();
-		
+
 		// ViewModels
 		builder.Services.AddSingleton<ProductViewModel>();
 		// Transient is a new instance every page visit

@@ -21,8 +21,11 @@ public partial class CartViewModel : BaseViewModel
         _turnupApiService = turnupApiService;
     }
 
+
     [ObservableProperty]
-    private decimal subtotal;
+    private string subtotal;
+
+    
     
 
     [RelayCommand]
@@ -47,8 +50,6 @@ public partial class CartViewModel : BaseViewModel
                 Items.Add(item);
             }
 
-            SetProperties();
-
         }
         catch (Exception e)
         {
@@ -68,10 +69,8 @@ public partial class CartViewModel : BaseViewModel
         myCart.EstablishmentId = c.Result.EstablishmentId;
         myCart.Subtotal = c.Result.Subtotal;
         myCart.CustomerId = c.Result.CustomerId;
+        Subtotal = c.Result.Subtotal.ToString();
     }
 
-    private void SetProperties()
-    {
-        subtotal = Cart.Subtotal;
-    }
+    
 }
