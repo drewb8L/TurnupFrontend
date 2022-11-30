@@ -35,14 +35,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiSplashScreen Include="Resources\AppIcon\appicon.png" BaseSize="128,128">
-		  <Color>#FFFFFF</Color>
-		  <BaseSize>256,256</BaseSize>
-		</MauiSplashScreen>
-		<MauiSplashScreen Include="Resources\Images\turnup_logo.png">
-		  <Color>#FFFFFF</Color>
-		  <BaseSize>256,256</BaseSize>
-		</MauiSplashScreen>
+		
+		<MauiIcon Include="Resources\Appicon\appicon.svg"  BaseSize="128,128" />
+		 
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#FFFFFF" BaseSize="256,256" />
@@ -64,6 +59,7 @@
 	  <None Remove="ZXing.Net.Maui" />
 	  <None Remove="ZXing.Net.Maui.Controls" />
 	</ItemGroup>
+	
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="Services\" />
