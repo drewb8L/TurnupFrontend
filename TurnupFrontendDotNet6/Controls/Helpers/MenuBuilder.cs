@@ -1,3 +1,5 @@
+using TurnupFrontendDotNet6.Views;
+
 namespace TurnupFrontendDotNet6.Controls.Helpers;
 
 public static class MenuBuilder
@@ -27,8 +29,8 @@ public static class MenuBuilder
                     new ShellContent
                     {
                         Icon = "tray.png",
-                        Title = "Orders",
-                        ContentTemplate = new DataTemplate(typeof(MainPage))
+                        Title = "Cart",
+                        ContentTemplate = new DataTemplate(typeof(CartPage))
                     },
                     new ShellContent()
                     {

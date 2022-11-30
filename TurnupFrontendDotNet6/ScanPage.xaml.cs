@@ -11,9 +11,7 @@ public partial class ScanPage : ContentPage
     
 	public ScanPage(ScanPageViewModel scanPageViewModel)
 	{
-        
-            
-		InitializeComponent();
+        InitializeComponent();
         BindingContext = scanPageViewModel;
         cameraBarcodeReaderView.Options = new BarcodeReaderOptions
         {
@@ -21,8 +19,6 @@ public partial class ScanPage : ContentPage
             AutoRotate = true,
             Multiple = false,
         };
-        
-        
     }
 
     
@@ -36,15 +32,5 @@ public partial class ScanPage : ContentPage
 
 
          });
-
-
-
-        // foreach (var barcode in e.Results)
-        // {
-        //     
-        //     Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
-        //     
-        // }
-
     }
 }

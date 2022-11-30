@@ -11,7 +11,7 @@ namespace TurnupFrontendDotNet6.ViewModels
 {
     public partial class ProductViewModel : BaseViewModel
     {
-        private readonly ProductService _productService;
+        
         private readonly TurnupApiService _turnupApiService;
         
         public ObservableCollection<Product> Products { get; private set; } = new();
@@ -51,7 +51,6 @@ namespace TurnupFrontendDotNet6.ViewModels
         [RelayCommand]
         public async Task GetProducts(ScanModel scanModel)
         {
-            //var scanModel = new ScanModel(establishmentCode);
             
             if (Isloading)
                 return;
@@ -89,21 +88,15 @@ namespace TurnupFrontendDotNet6.ViewModels
                 Isloading = false;
                 IsRefreshing = false;
             }
-
-
         }
 
         [RelayCommand]
-        async Task GetProductDetails(Product product)
+        async Task AddItemToCart(Product product)
         {
-            if (product ==null) return;
-
-            await Shell.Current.GoToAsync(nameof(ProductDetailsPage), true, new Dictionary<string, object>
-            {
-                {nameof(Product), nameof(product) }
-            });
+            
         }
 
+        
         [RelayCommand]
         async Task GetEstablishmentDetails()
         {
@@ -112,6 +105,7 @@ namespace TurnupFrontendDotNet6.ViewModels
            description = establishment.Description;
            logoUrl = establishment.LogoUrl;
           jumbotronImgUrl = establishment.JumbotronImgUrl;
+          await SecureStorage.SetAsync("EstablishmentId", establishmentId);
 
         }
     }

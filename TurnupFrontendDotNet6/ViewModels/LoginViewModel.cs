@@ -36,7 +36,7 @@ public partial class LoginViewModel : BaseViewModel
       {
          var loginModel = new LoginModel(email, password);
          var response = await turnupApiService.Login(loginModel);
-         await LoginMessage(turnupApiService.StatusMessage);
+         //await LoginMessage(turnupApiService.StatusMessage);
          
          if (!string.IsNullOrEmpty(response?.Token))
          {
@@ -62,7 +62,7 @@ public partial class LoginViewModel : BaseViewModel
          {
             await LoginMessage(InvalidLogin);
             password = string.Empty;
-            Shell.Current.GoToAsync(nameof(LoginPage));
+            await Shell.Current.GoToAsync(nameof(LoginPage));
 
          }
          

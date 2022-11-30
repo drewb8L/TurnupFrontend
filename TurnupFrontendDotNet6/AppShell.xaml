@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TurnupFrontendDotNet6"
+    xmlns:views="clr-namespace:TurnupFrontendDotNet6.Views"
 
     Shell.FlyoutBehavior="Flyout">
      
@@ -24,10 +25,14 @@
         Route="LoginPage" />
     
     <ShellContent
-        
         Title="Establishment"
-        ContentTemplate="{DataTemplate local:LoadingPage}"
-        Route="LoadingPage" />
+        ContentTemplate="{DataTemplate local:EstablishmentPage}"
+        Route="EstablishmentPage" />
+    
+    <ShellContent
+        Title="Cart"
+        ContentTemplate="{DataTemplate views:CartPage}"
+        Route="CartPage" />
     
     <!--  <ShellContent -->
     <!--     Title="Scan" -->
