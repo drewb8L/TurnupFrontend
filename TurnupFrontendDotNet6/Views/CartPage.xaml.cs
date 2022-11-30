@@ -16,5 +16,26 @@ public partial class CartPage : ContentPage
         BindingContext = cartViewModel;
     }
 
-   
+    private int quantity;
+    
+
+    private void Stepper_OnValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        double value = e.NewValue;
+        quantity = Convert.ToInt32(value);
+        
+    }
+
+
+    private void Button_OnClicked(object sender, EventArgs e)
+    {
+        // quantity value check
+        var data = ((VisualElement)sender).BindingContext as CartViewModel;
+        
+    }
+
+    private void OrderButton_OnClicked(object sender, EventArgs e)
+    {
+        
+    }
 }

@@ -9,10 +9,12 @@
              Title="{Binding Title}">
     <StackLayout>
         <Button
+            Padding="10"
+            Margin="10"
             Text="Get cart"
             WidthRequest="65"
             Command="{Binding GetCartCommand}"/>
-        
+        <Line Stroke="Black" X2="800"/>
         <CollectionView ItemsSource="{Binding  Items}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:CartItems">
@@ -20,27 +22,47 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImgUrl}" HeightRequest="100" WidthRequest="100" />  
-                        <Label Grid.Column="1"
+                           </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" 
                                Text="{Binding Name}"
                                FontAttributes="Bold" />
+                        <Button x:Name="Button" Grid.Row="0" Grid.Column="2" x:DataType="model:CartItems" Text="Remove" MaximumWidthRequest="85" BackgroundColor="Red" Clicked="Button_OnClicked"/>
+                        
+                        <Stepper Grid.Column="3" Grid.Row="0" Margin="5" Maximum="10" Increment="1" ValueChanged="Stepper_OnValueChanged"/>
+                        <Label x:Name="quantityLbl" Grid.Row="2" Grid.Column="2"/>
                         <Label Grid.Row="1"
-                               Grid.Column="1"
-                               Text="{Binding Price}"
+                               Grid.Column="0"
+                               Text="{Binding Price, StringFormat='Price ${0}'}"
                                FontAttributes="Italic"
                                VerticalOptions="End" />
+                        
+                        <Label Grid.Column="0" Grid.Row="2" Text="{Binding Quantity, StringFormat='Quantity: {0}'}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>                 
         <Line Stroke="Black" X2="800"/>
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Label Text="{Binding Subtotal}"/>
+        <HorizontalStackLayout HorizontalOptions="Start">
+            <Label Padding="5" Margin="5" 
+                   Text="{Binding Subtotal, StringFormat='Subtotal ${0}'}"
+                   FontAttributes="Bold" FontSize="20"/>
+            <Button
+                Command="{Binding PlaceOrderCommand}"
+                Padding="5"
+                Margin="5"
+                Text="Check Out"
+                WidthRequest="100"
+                BackgroundColor="Green"
+                TextColor="White">
+            </Button>
+            
         </HorizontalStackLayout>
     </StackLayout>
 

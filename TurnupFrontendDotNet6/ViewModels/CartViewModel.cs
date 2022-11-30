@@ -36,10 +36,8 @@ public partial class CartViewModel : BaseViewModel
         try
         {
             Isloading = true;
-            
-
             var result = _turnupApiService.GetCart();
-            
+           
             await SetCartDetails(Cart, result);
             if (Items.Any())
             {
@@ -65,6 +63,7 @@ public partial class CartViewModel : BaseViewModel
 
     private async Task SetCartDetails(Cart myCart, Task<Cart> c)
     {
+
         myCart.Id = c.Result.Id;
         myCart.EstablishmentId = c.Result.EstablishmentId;
         myCart.Subtotal = c.Result.Subtotal;
@@ -72,5 +71,44 @@ public partial class CartViewModel : BaseViewModel
         Subtotal = c.Result.Subtotal.ToString();
     }
 
+   
+    public async Task RemoveItem(Product product, double quantity)
+    {
+        var model = new UpdateCartModel()
+        {
+            ProductId = product.Id,
+            Quantity = Convert.ToInt32(quantity),
+        };
+        
+        var result = await _turnupApiService.RemoveFromCart(product,model );
+        if (result.IsDeleted)
+        {
+            await Shell.Current.DisplayAlert($"{product.Title}", "Removed from cart", "Ok");
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert($"{product.Title}", "There was an issue removing this item", "Ok");
+        }
+        
+    }
+
+    [RelayCommand]
+    public async Task PlaceOrder()
+    {
+        var order = await _turnupApiService.PlaceOrder();
+
+        if (order.IsOrderPlaced)
+        {
+            await Shell.Current.DisplayAlert("Order Received", "Your order has been placed successfully", "Ok");
+            Items.Clear();
+        }
+        else
+        {
+            await Shell.Current.DisplayAlert("Order error", "There was an issue placing this order", "Ok");
+        }
+        
+        
+
+    }
     
 }

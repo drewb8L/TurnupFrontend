@@ -8,16 +8,17 @@
              Title="{Binding EstablishmentName}">
     <ScrollView>
     <VerticalStackLayout>
-        <Label Text="{Binding EstablishmentName}" FontAttributes="Bold" FontSize="28"/>   
+          
         <Image Source="{Binding JumbotronImgUrl}" HorizontalOptions="Fill">
         <Image.Shadow> <Shadow Brush="Black" Offset="20,20" Radius="40" Opacity="0.8"/> </Image.Shadow> </Image>
         <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160,Auto">
-            <Frame
+                 
+ <Frame
                        Grid.RowSpan="2"
                        Grid.ColumnSpan="1"
                        Margin="0,-40,0,0"
                        HeightRequest="160"
-                       WidthRequest="160"
+                       WidthRequest="160"                                         
                        HorizontalOptions="Start"
                        Padding="0"
                        IsClippedToBounds="True"
@@ -29,17 +30,30 @@
                 VerticalOptions="Center"
                 Source="{Binding LogoUrl}"
                 WidthRequest="160"/>
+                    <Frame.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="20,40"
+                                Opacity="0.8"/>
+
+                    </Frame.Shadow>
         </Frame>
-        </Grid>
-        <!-- <Image.Shadow> -->
-        <!--     <Shadow Brush="Black" -->
-        <!--             Offset="20,20" -->
-        <!--             Radius="40" -->
-        <!--             Opacity="0.8"/> -->
-        <!-- </Image.Shadow> -->
+           
+        </Grid>    
             
-        <Label Padding="10" Margin="2" Text="{Binding Description}"/>
-            
+        
+            <Frame BorderColor="Gray" Margin="5,0,5,10"
+       CornerRadius="5"
+       Padding="8">
+  <StackLayout>
+    <Label Text="About Us"
+           FontSize="14"
+           FontAttributes="Bold" />
+    <BoxView Color="Gray"
+             HeightRequest="2"
+             HorizontalOptions="Fill" />
+    <Label Padding="10" Margin="2" Text="{Binding Description}"/>
+  </StackLayout>
+</Frame>
             <Line Stroke="Black" X2="800" />
             <Grid ColumnDefinitions="*" ColumnSpacing="5" RowDefinitions="*">
                 <RefreshView
@@ -49,16 +63,25 @@
                     <CollectionView Grid.ColumnSpan="3" ItemsSource="{Binding Products}" SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Product">
-                                <Grid Padding="10">
-                                    <Frame HeightRequest="90" HorizontalOptions="Start" WidthRequest="375">
+                                <Grid Padding="5">
+                                    <Frame HeightRequest="100" HorizontalOptions="Start" WidthRequest="375">
+                                        <Frame.Shadow>
+                                            <Shadow 
+                                             Brush="Black"
+                                                           Offset="20,40" 
+                                                           Radius="80" 
+                                                           Opacity="0.8"/> 
+                                        </Frame.Shadow>
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                                        
                                         </Frame.GestureRecognizers>
-                                        <HorizontalStackLayout Padding="10" Spacing="5">
-                                            <Label Text="{Binding Title}"></Label>
-                                            <Label Text="{Binding Price}"></Label>
-                                            <Image Source="{Binding ImageUrl}" Margin="150,0,0,0"  Aspect="AspectFit" HeightRequest="100" WidthRequest="100" />                                         
+                                        <HorizontalStackLayout >
+                                            <Grid ColumnDefinitions="100,100,90" RowDefinitions="*,Auto">
+                                            <Label Grid.Row="0" Text="{Binding Title}"/>
+                                            <Label Grid.Row="1" Text="{Binding Price,StringFormat='${0}'}"/>
+                                            <Image Grid.Row="0" Grid.Column="2" Source="{Binding ImageUrl}" HorizontalOptions="End" Aspect="AspectFit" HeightRequest="90"  />
+                                            </Grid>
                                         </HorizontalStackLayout>
                                         
                                     </Frame>
@@ -74,8 +97,3 @@
     </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-
-<!-- <TapGestureRecognizer Command="{Binding Source={RelativeSource  -->
-<!--                                         AncestorType={x:Type viewmodel:ProductViewModel}}, -->
-<!--                                          Path=GetProductDetailsCommand}" -->
-<!--                       CommandParameter="{Binding .}"/> -->

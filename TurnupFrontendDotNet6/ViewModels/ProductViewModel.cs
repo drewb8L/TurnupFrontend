@@ -96,17 +96,7 @@ namespace TurnupFrontendDotNet6.ViewModels
             
         }
 
-        // [RelayCommand]
-        // async Task GetProductDetails(Product product)
-        // {
-        //     if (product == null) return;
-        //
-        //     await Shell.Current.GoToAsync(nameof(ProductDetailsPage), true, new Dictionary<string, object>
-        //     {
-        //         { nameof(Product), nameof(product) }
-        //     });
-        // }
-
+        
         [RelayCommand]
         async Task GetEstablishmentDetails()
         {
